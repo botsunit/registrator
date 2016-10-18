@@ -78,7 +78,7 @@ func (r *ConsulAdapter) Ping() error {
 }
 
 func (r *ConsulAdapter) Register(service *bridge.Service) error {
-	imageName := service.Origin.Container.Image
+	imageName := service.Origin.Container.Config.Image
 	servicesTag := service.Tags
 	servicesTag = append(servicesTag, fmt.Sprintf("image=%s", imageName))
 	registration := new(consulapi.AgentServiceRegistration)
