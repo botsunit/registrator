@@ -55,5 +55,5 @@ type ServicePort struct {
 	ContainerHostname string
 	ContainerID       string
 	ContainerName     string
-	container         *dockerapi.Container
+	Container         *dockerapi.Container
 }
