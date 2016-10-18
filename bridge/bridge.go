@@ -164,7 +164,7 @@ func (b *Bridge) Sync(quiet bool) {
 			serviceContainerName := matches[2]
 			for _, listing := range b.services {
 				for _, service := range listing {
-					if service.Name == extService.Name && serviceContainerName == service.Origin.container.Name[1:] {
+					if service.Name == extService.Name && serviceContainerName == service.Origin.Container.Name[1:] {
 						continue Outer
 					}
 				}
@@ -202,7 +202,7 @@ func (b *Bridge) add(containerId string, quiet bool) {
 
 	// Extract configured host port mappings, relevant when using --net=host
 	for port, _ := range container.Config.ExposedPorts {
-		published := []dockerapi.PortBinding{ {"0.0.0.0", port.Port()}, }
+		published := []dockerapi.PortBinding{{"0.0.0.0", port.Port()}}
 		ports[string(port)] = servicePort(container, port, published)
 	}
 
@@ -247,7 +247,7 @@ func (b *Bridge) add(containerId string, quiet bool) {
 }
 
 func (b *Bridge) newService(port ServicePort, isgroup bool) *Service {
-	container := port.container
+	container := port.Container
 	defaultName := strings.Split(path.Base(container.Config.Image), ":")[0]
 
 	// not sure about this logic. kind of want to remove it.

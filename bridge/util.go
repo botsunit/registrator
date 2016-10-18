@@ -102,6 +102,6 @@ func servicePort(container *dockerapi.Container, port dockerapi.Port, published 
 		PortType:          ept,
 		ContainerID:       container.ID,
 		ContainerHostname: container.Config.Hostname,
-		container:         container,
+		Container:         container,
 	}
 }
